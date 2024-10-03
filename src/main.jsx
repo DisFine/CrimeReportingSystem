@@ -4,10 +4,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom"
-import LoginPage from "./components/LoginPage"
-import Authorities from './components/Authorities'
-import SignUp from './components/signup'
-import ForgotPassword from './components/ForgotPassword'
+import LoginPage from "./LoginComponents/LoginPage"
+import Authorities from './AuthorityComponent/Authorities'
+import SignUp from './LoginComponents/SignUp'
+import ForgotPassword from './LoginComponents/ForgotPassword'
 import PageLayout from './PageLayout'
 import PageLayout2 from './PageLayout2'
 

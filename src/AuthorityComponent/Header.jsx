@@ -1,5 +1,6 @@
 import React from 'react'
 import './Header.css'
+import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <>
@@ -20,6 +21,12 @@ const Header = () => {
             <i className="fas fa-bars"></i>
         </div>
     </div>
+    <div className="ReportStatus">
+        <Link id="view-ReportStatus" to='/signup'> [Total Report]</Link>
+        <Link id="view-ReportStatus" to='/signup'> [Open Cases]</Link>
+        <Link id="view-ReportStatus" to='/signup'> [Under Investigation]</Link>
+        <Link id="view-ReportStatus" to='/signup'> [Resolved]</Link>
+      </div>
     </>
   )
 }
