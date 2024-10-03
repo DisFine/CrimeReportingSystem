@@ -23,7 +23,7 @@ body {
 .UPL{
     display: flex;
     flex-direction: column;
-    margin: 25% 10px 10px 10px;
+    margin: 35% 10px 10px 10px;
     background-color: #605858;
     border: 2px solid black;
     padding: 20px 20px 20px 20px;
@@ -56,7 +56,7 @@ body h1{
 .login-container {
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 96vh;
     width: 32%;
     margin: 15px 10px 10px 10px;
     padding: 20px;
@@ -148,6 +148,7 @@ h2 {
 }
 
 .Title{
+    width: 65%;
     display: flex;
     padding: 10px;
     margin: 20px 10px 10px 10px;
@@ -158,6 +159,7 @@ h2 {
 .transbox{
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 50vh;
     border: 1px black solid;
     opacity: 0.5;

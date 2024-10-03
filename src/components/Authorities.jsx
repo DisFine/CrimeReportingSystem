@@ -5,10 +5,10 @@ const Authorities = () => {
   return (
     <>
       <div className="ReportStatus">
-        <Link id="view-Rbtn" to='/signup'> [Total Report]</Link>
-        <Link id="view-Rbtn" to='/signup'> [Open Cases]</Link>
-        <Link id="view-Rbtn" to='/signup'> [Under Investigation]</Link>
-        <Link id="view-Rbtn" to='/signup'> [Resolved]</Link>
+        <Link id="view-ReportStatus" to='/signup'> [Total Report]</Link>
+        <Link id="view-ReportStatus" to='/signup'> [Open Cases]</Link>
+        <Link id="view-ReportStatus" to='/signup'> [Under Investigation]</Link>
+        <Link id="view-ReportStatus" to='/signup'> [Resolved]</Link>
       </div>
       <div className="Quick-Stats">
         Quick Stats:  
