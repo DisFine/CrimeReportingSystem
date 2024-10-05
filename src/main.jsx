@@ -10,7 +10,10 @@ import SignUp from './LoginComponents/SignUp'
 import ForgotPassword from './LoginComponents/ForgotPassword'
 import PageLayout from './PageLayout'
 import PageLayout2 from './PageLayout2'
-
+import OpenCases from './AuthorityComponent/CasesTable/OpenCases'
+import ClosedCases from './AuthorityComponent/CasesTable/ClosedCases'
+import OngoingCases from './AuthorityComponent/CasesTable/OngoingCases'
+import HelpCenter from './AuthorityComponent/HelpCenter'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +44,23 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Authorities />,
-      }
+      },
+      {
+        path: "OpenCases",
+        element: <OpenCases />,
+      },
+      {
+        path: "ClosedCases",
+        element: <ClosedCases />,
+      },
+      {
+        path: "OngoingCases",
+        element: <OngoingCases />,
+      },
+      {
+        path: "HelpCenter",
+        element: <HelpCenter />,
+      },
     ]
   }
 ])

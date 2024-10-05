@@ -1,9 +1,8 @@
 import React,{ useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { supabase } from '../createClient';
-import './Authorities.css';
-
-function Authorities() {
+import { supabase } from '../../createClient';
+import '../Authorities.css'
+function OpenCases() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -13,7 +12,8 @@ function Authorities() {
     async function fetchUsers() {
         const {data} = await supabase
         .from('case_management')
-        .select('*')   
+        .select('*')  
+        .eq('Status', 'Awaiting Action')
         setUsers(data)
         console.log(data)
     }
@@ -102,4 +102,4 @@ function Authorities() {
   )
 }
 
-export default Authorities
+export default OpenCases

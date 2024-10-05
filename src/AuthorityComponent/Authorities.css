@@ -108,7 +108,7 @@ h1 {
     text-align: center;
     border-radius: 5px;
 }
-
+/* 
 .view-btn {
     width: 100%;
     padding: 10px;
@@ -126,7 +126,7 @@ h1 {
 
 .view-btn:hover {
     background-color: #441010;
-}
+} */
 
 .ViewDetails {
     display: flex;

@@ -1,0 +1,79 @@
+.help-center {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+    line-height: 1.6;
+}
+  
+.HContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.HContainer h1 {
+    font-size: 165px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.HContainer h2 {
+    color: #0056b3;
+    margin-top: 40px;
+    text-decoration: underline;
+}
+
+.HContainer h3 {
+    color: #333;
+    margin-top: 30px;
+}
+
+.HContainer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.HContainer ul li {
+    margin-bottom: 10px;
+}
+
+.HContainer ul li a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.HContainer ul li a:hover {
+    text-decoration: underline;
+}
+
+.HContainer p {
+    margin-bottom: 15px;
+}
+
+.HContainer strong {
+    font-weight: bold;
+}
+
+.HContainer a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.HContainer a:hover {
+    text-decoration: underline;
+}
+
+.HContainer section {
+    margin-top: 20px;
+}
+
+.HContainer ul li {
+    margin-bottom: 5px;
+}
+
