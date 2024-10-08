@@ -20,14 +20,6 @@ function OpenCases() {
 
   return (
     <>
-      <div className="Quick-Stats">
-        Quick Stats:  
-        <p>- Total Reports: <span>350</span></p>                                  
-        <p>- Open Cases: <span>120</span></p>                                    
-        <p>- Under Investigation: <span>50</span></p>                               
-        <p>- Resolved: <span>180</span></p>      
-      </div>
-
       <div className="Table">
         <h2> CASE MANAGEMENT (Table of Cases) </h2>
         <table id="AuthTable">
@@ -70,8 +62,7 @@ function OpenCases() {
                   <h3>Quick Links</h3>
                   <ul>
                       <li><a href="#">Home</a></li>
-                      <li><a href="#">Report a Crime</a></li>
-                      <li><a href="#">Case Status</a></li>
+                      <li><a href="#">Official Crime Portal</a></li>
                       <li><a href="#">Help Center</a></li>
                   </ul>
               </div>

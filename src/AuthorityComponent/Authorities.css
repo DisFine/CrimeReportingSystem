@@ -55,6 +55,7 @@
 .Table{
     display: flex;
     padding: 10px;
+    padding-bottom: 20px;
     flex-direction: column;
     align-items: center;
     background-color: #413b3b;
@@ -136,7 +137,7 @@ h1 {
     color: white;
     flex-direction: row;
     margin-left: 8%;
-    margin-top: 0.1%;
+    margin-top: 0.2%;
     margin-bottom: 3%;
     background-color: #605858;
     opacity: 0.9;

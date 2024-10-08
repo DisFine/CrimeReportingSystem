@@ -34,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "ForgotPassword",
         element: <ForgotPassword />,
+      },
+      {
+        path: "HelpCenter",
+        element: <HelpCenter />,
       }
     ]
   },
@@ -56,10 +60,6 @@ const router = createBrowserRouter([
       {
         path: "OngoingCases",
         element: <OngoingCases />,
-      },
-      {
-        path: "HelpCenter",
-        element: <HelpCenter />,
       },
     ]
   }

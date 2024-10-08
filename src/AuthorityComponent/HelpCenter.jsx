@@ -1,8 +1,8 @@
 import React from 'react';
 import './HelpCenter.css';
 
-const HelpCenter = () => {
-  return (
+function HelpCenter() {
+    return (
     <>
         <div className="help-center">
             <div className="HContainer">    

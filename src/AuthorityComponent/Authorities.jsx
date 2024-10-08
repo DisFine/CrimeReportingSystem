@@ -4,30 +4,21 @@ import { supabase } from '../createClient';
 import './Authorities.css';
 
 function Authorities() {
-    const [users, setUsers] = useState([]);
 
+    const [users, setUsers] = useState([]);
     useEffect(() => {
         fetchUsers()
     }, []);
 
     async function fetchUsers() {
-        const {data} = await supabase
+        const { data } = await supabase
         .from('case_management')
-        .select('*')   
+        .select('*');
         setUsers(data)
-        console.log(data)
     }
 
-  return (
+    return (
     <>
-      <div className="Quick-Stats">
-        Quick Stats:  
-        <p>- Total Reports: <span>350</span></p>                                  
-        <p>- Open Cases: <span>120</span></p>                                    
-        <p>- Under Investigation: <span>50</span></p>                               
-        <p>- Resolved: <span>180</span></p>      
-      </div>
-
       <div className="Table">
         <h2> CASE MANAGEMENT (Table of Cases) </h2>
         <table id="AuthTable">
@@ -70,8 +61,7 @@ function Authorities() {
                   <h3>Quick Links</h3>
                   <ul>
                       <li><a href="#">Home</a></li>
-                      <li><a href="#">Report a Crime</a></li>
-                      <li><a href="#">Case Status</a></li>
+                      <li><a href="#">Official Crime Portal</a></li>
                       <li><a href="#">Help Center</a></li>
                   </ul>
               </div>
