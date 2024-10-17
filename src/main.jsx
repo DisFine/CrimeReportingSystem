@@ -14,6 +14,7 @@ import OpenCases from './AuthorityComponent/CasesTable/OpenCases'
 import ClosedCases from './AuthorityComponent/CasesTable/ClosedCases'
 import OngoingCases from './AuthorityComponent/CasesTable/OngoingCases'
 import HelpCenter from './AuthorityComponent/HelpCenter'
+import UpdateCases from './AuthorityComponent/CasesTable/updateCases'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "OngoingCases",
         element: <OngoingCases />,
+      },
+      {
+        path: "UpdateCases",
+        element: <UpdateCases />,
       },
     ]
   }

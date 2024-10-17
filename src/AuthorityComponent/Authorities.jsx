@@ -47,7 +47,7 @@ function Authorities() {
       <div className="ViewDetails">
         <Link id="view-Details" to='/signup'> [View Details] </Link>
         <Link id="view-Details" to='/signup'> [Assign Officer] </Link>
-        <Link id="view-Details" to='/signup'> [Update Status] </Link>
+        <Link id="view-Details" to='/Authorities/UpdateCases'> [Update Status] </Link>
         <Link id="view-Details" to='/signup'> [Evidence] </Link>
       </div>
         <footer>
