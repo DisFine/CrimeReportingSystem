@@ -6,8 +6,14 @@ import './Authorities.css';
 function Authorities() {
 
     const [users, setUsers] = useState([]);
+    const [officers, setOfficers] = useState([]);
+    const [ShowUpdateStatus, setShowUpdateStatus] = useState(false)
+    const [ShowOfficersAvailable, setShowOfficersAvailable] = useState(false)
     useEffect(() => {
         fetchUsers()
+        FetchOfficers()
+        updateStatus()
+        AssignOfficers()
     }, []);
 
     async function fetchUsers() {
@@ -17,6 +23,61 @@ function Authorities() {
         setUsers(data)
     }
 
+    async function FetchOfficers() {       
+        const { data } = await supabase
+        .from('Officers_List')
+        .select('*')
+        setOfficers(data)
+    }
+    
+    async function updateStatus(caseNumber, newStatus) {
+        const { data, error } = await supabase
+        .from('case_management')
+        .update({ Status: newStatus })
+        .eq('Case_Number', caseNumber)
+        .select();
+
+        if (error) console.error('Error updating status:', error);
+        else {
+            console.log('Status updated:', data);
+            fetchUsers();
+        }
+    }
+
+    const AssignOfficers = async (caseNumber, newOfficerId) => {
+        const currentOfficerId = users.find(item => item.Case_Number === caseNumber)?.Assigned_Officer_ID;
+    
+        if (currentOfficerId) {
+            await supabase
+            .from('Officers_List')
+            .update({ Status: 'Available' })
+            .eq('ID', currentOfficerId);
+        }
+
+        await supabase
+        .from('case_management')
+        .update({ Assigned_Officer_ID: newOfficerId })
+        .eq('Case_Number', caseNumber);
+    
+        await supabase
+        .from('Officers_List')
+        .update({ Status: 'Not Available' })
+        .eq('ID', newOfficerId); 
+
+        setUsers(prevUsers => 
+            prevUsers.map(item => 
+                item.Case_Number === caseNumber 
+                ? { ...item, Assigned_Officer_ID: newOfficerId }
+                : item
+            )
+        );
+
+        await fetchUsers();
+        await FetchOfficers();
+    };  
+    
+
+
     return (
     <>
       <div className="Table">
@@ -24,30 +85,75 @@ function Authorities() {
         <table id="AuthTable">
             <thead>
                 <tr>
-                    <th>Case Number </th>
+                    <th>Case Number</th>
                     <th>Crime Type</th>
                     <th>Incident Location</th>
                     <th>Reported Date</th>
                     <th>Status</th>
+                    {ShowUpdateStatus && (<th>Update Status</th>)}
+                    {ShowOfficersAvailable && (<th>Officer</th>)}
                 </tr>
             </thead>
-            <tbody>    
-            {users.map((item,index) => (      
-                <tr key={index}>
-                    <td>{item.Case_Number}</td>
-                    <td>{item.Crime_Type}</td>
-                    <td>{item.Incident_Location}</td>
-                    <td>{item.Report_Date}</td>
-                    <td>{item.Status}</td>
-                </tr>
-            ))}
+            <tbody>
+                {users.map((item, index) => (
+                    <tr key={index}>
+                        <td>{item.Case_Number}</td>
+                        <td>{item.Crime_Type}</td>
+                        <td>{item.Incident_Location}</td>
+                        <td>{item.Report_Date}</td>
+                        <td>{item.Status}</td>
+                        {ShowUpdateStatus && (
+                            <td>
+                                <select 
+                                    id={`status-${item.Case_Number}`}
+                                    className="status-select"
+                                    onChange={(e) => updateStatus(item.Case_Number, e.target.value)}
+                                    value={item.Status}
+                                >
+                                    <option value="">Select Status</option>
+                                    <option value="Open Case">Open Case</option>
+                                    <option value="Under Investigation">Under Investigation</option>
+                                    <option value="Resolved">Resolved</option>
+                                    <option value="Closed Case">Closed Case</option>
+                                </select>
+                            </td>
+                        )}
+                        {ShowOfficersAvailable && (
+                            <td>
+                                {item.Status === "Closed Case" || item.Status === "Resolved" ? (
+                                    officers.find(officer => officer.ID === item.Assigned_Officer_ID)?.Officer_Name || 'Not Assigned'
+                                ) : (
+                                    <select 
+                                        id={`status-${item.Case_Number}`}
+                                        className="Officer-select"
+                                        onChange={(e) => AssignOfficers(item.Case_Number, e.target.value)}
+                                        value={item.Assigned_Officer_ID}
+                                    >
+                                        {item.Assigned_Officer_ID ? (
+                                            <option value={item.Assigned_Officer_ID}>
+                                                {officers.find(officer => officer.ID === item.Assigned_Officer_ID)?.Officer_Name}
+                                            </option>
+                                        ) : (
+                                            <option value="">Select Officer</option>
+                                        )}
+                                        {officers.filter(officer => officer.Status === 'Available').map((officer) => (
+                                            <option key={officer.ID} value={officer.ID}>
+                                                {officer.Officer_Name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                )}
+                            </td> 
+                        )}
+                    </tr>
+                ))}
             </tbody>
         </table>
       </div>
       <div className="ViewDetails">
         <Link id="view-Details" to='/signup'> [View Details] </Link>
-        <Link id="view-Details" to='/signup'> [Assign Officer] </Link>
-        <Link id="view-Details" to='/Authorities/UpdateCases'> [Update Status] </Link>
+        <button id="view-Details" onClick={() => setShowOfficersAvailable(!ShowOfficersAvailable)}> [Assign Officer] </button>
+        <button id="view-Details" onClick={() => setShowUpdateStatus(!ShowUpdateStatus)}> [update Status] </button>
         <Link id="view-Details" to='/signup'> [Evidence] </Link>
       </div>
         <footer>

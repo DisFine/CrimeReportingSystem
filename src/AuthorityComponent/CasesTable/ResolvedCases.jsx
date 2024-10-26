@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { supabase } from '../../createClient';
 import '../Authorities.css'
-function OngoingCases() {
+function ResolvedCases() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ function OngoingCases() {
         const {data} = await supabase
         .from('case_management')
         .select('*')  
-        .eq('Status', 'Under Investigation')
+        .eq('Status', 'Resolved')
         setUsers(data)
         console.log(data)
     }
@@ -45,6 +45,7 @@ function OngoingCases() {
             </tbody>
         </table>
       </div>
+
         <footer>
           <div className="footer-container">
               <div className="footer-section about">
@@ -53,12 +54,12 @@ function OngoingCases() {
               </div>
 
               <div className="footer-section links">
-                  <h3>Quick Links</h3>
-                  <ul>
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#">Official Crime Portal</a></li>
-                      <li><a href="#">Help Center</a></li>
-                  </ul>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Official Crime Portal</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
               </div>
 
               <div className="footer-section contact">
@@ -87,4 +88,4 @@ function OngoingCases() {
   )
 }
 
-export default OngoingCases
+export default ResolvedCases

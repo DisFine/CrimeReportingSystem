@@ -38,6 +38,11 @@
 #AuthTable td, #AuthTable th {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align: center;
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
 }
 
 #AuthTable tr:nth-child(even){background-color: #3f3f3f;}
@@ -50,6 +55,7 @@
   text-align: left;
   background-color: #441010;
   color: white;
+  text-align: center;
 }
 
 .Table{
@@ -64,6 +70,7 @@
     border-radius: 14px;
     width: 80%;
     margin-left: 8%;
+    margin-bottom: 10px;
 }
 
 body {
@@ -146,10 +153,20 @@ h1 {
     justify-content: space-evenly;
 }
 
-.ViewDetails a {
+.ViewDetails #view-Details {
     font-size: 30px;
     color: white;
     background-color: transparent;
+    border: none;
+    text-decoration: none;
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+.ViewDetails  {
+    font-size: 30px;
+    color: white;
+    /* background-color: transparent; */
     border: none;
     text-decoration: none;
     font-family: "VT323", monospace;
@@ -242,4 +259,57 @@ footer {
     --text-color: #ffffff;
     --hover-color: #1abc9c;
     --font-family: 'Open Sans', sans-serif;
+}
+
+.status-select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #dbdbdb;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+}
+
+.status-select:hover {
+    background-color: #f8f8f8;
+    border-color: #aaa;
+}
+
+.status-select:focus {
+    border-color: #4169E1;
+    box-shadow: 0px 0px 5px rgba(65, 105, 225, 0.5);
+}
+.Officer-select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #dbdbdb;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+}
+
+.Officer-select:hover {
+    background-color: #f8f8f8;
+    border-color: #aaa;
+}
+
+.Officer-select:focus {
+    border-color: #4169E1;
+    box-shadow: 0px 0px 5px rgba(65, 105, 225, 0.5);
 }

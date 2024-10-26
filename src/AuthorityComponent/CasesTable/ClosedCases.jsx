@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { supabase } from '../../createClient';
 import '../Authorities.css'
-function OpenCases() {
+function ClosedCases() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ function OpenCases() {
         const {data} = await supabase
         .from('case_management')
         .select('*')  
-        .eq('Status', 'Resolved')
+        .eq('Status', 'Closed Case')
         setUsers(data)
         console.log(data)
     }
@@ -44,12 +44,6 @@ function OpenCases() {
             ))}
             </tbody>
         </table>
-      </div>
-      <div className="ViewDetails">
-        <Link id="view-Details" to='/signup'> [View Details] </Link>
-        <Link id="view-Details" to='/signup'> [Assign Officer] </Link>
-        <Link id="view-Details" to='/signup'> [Update Status] </Link>
-        <Link id="view-Details" to='/signup'> [Evidence] </Link>
       </div>
         <footer>
           <div className="footer-container">
@@ -93,4 +87,4 @@ function OpenCases() {
   )
 }
 
-export default OpenCases
+export default ClosedCases

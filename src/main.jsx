@@ -11,10 +11,10 @@ import ForgotPassword from './LoginComponents/ForgotPassword'
 import PageLayout from './PageLayout'
 import PageLayout2 from './PageLayout2'
 import OpenCases from './AuthorityComponent/CasesTable/OpenCases'
-import ClosedCases from './AuthorityComponent/CasesTable/ClosedCases'
+import ResolvedCases from './AuthorityComponent/CasesTable/ResolvedCases'
 import OngoingCases from './AuthorityComponent/CasesTable/OngoingCases'
+import ClosedCases from './AuthorityComponent/CasesTable/ClosedCases'
 import HelpCenter from './AuthorityComponent/HelpCenter'
-import UpdateCases from './AuthorityComponent/CasesTable/updateCases'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,10 +35,6 @@ const router = createBrowserRouter([
       {
         path: "ForgotPassword",
         element: <ForgotPassword />,
-      },
-      {
-        path: "HelpCenter",
-        element: <HelpCenter />,
       }
     ]
   },
@@ -55,17 +51,21 @@ const router = createBrowserRouter([
         element: <OpenCases />,
       },
       {
-        path: "ClosedCases",
-        element: <ClosedCases />,
+        path: "ResolvedCases",
+        element: <ResolvedCases />,
       },
       {
         path: "OngoingCases",
         element: <OngoingCases />,
       },
       {
-        path: "UpdateCases",
-        element: <UpdateCases />,
+        path: "ClosedCases",
+        element: <ClosedCases />,
       },
+      {
+        path: "HelpCenter",
+        element: <HelpCenter />,
+      }
     ]
   }
 ])

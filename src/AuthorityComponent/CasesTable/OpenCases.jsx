@@ -13,7 +13,7 @@ function OpenCases() {
         const {data} = await supabase
         .from('case_management')
         .select('*')  
-        .eq('Status', 'Awaiting Action')
+        .eq('Status', 'Open Case')
         setUsers(data)
         console.log(data)
     }
@@ -44,12 +44,6 @@ function OpenCases() {
             ))}
             </tbody>
         </table>
-      </div>
-      <div className="ViewDetails">
-        <Link id="view-Details" to='/signup'> [View Details] </Link>
-        <Link id="view-Details" to='/signup'> [Assign Officer] </Link>
-        <Link id="view-Details" to='/signup'> [Update Status] </Link>
-        <Link id="view-Details" to='/signup'> [Evidence] </Link>
       </div>
         <footer>
           <div className="footer-container">

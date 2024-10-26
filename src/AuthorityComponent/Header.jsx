@@ -10,12 +10,14 @@ function Header() {
   const [countOC, setCountOC] = useState(0);
   const [countUI, setCountUI] = useState(0);
   const [countR, setCountR] = useState(0);
+  const [countCC, setCountCC] = useState(0);
 
   useEffect(() => {
       fetchTotalReports()
       fetchOpenCases()
       fetchUnderInvestigation()
       fetchResolved()
+      fetchClosedCase()
       RQS()
   }, [location]);
 
@@ -30,7 +32,7 @@ function Header() {
       const { count } = await supabase
       .from('case_management')
       .select('*', { count: 'exact' })
-      .eq('Status', 'Awaiting Action')
+      .eq('Status', 'Open Case')
       setCountOC(count)
   }
 
@@ -50,9 +52,17 @@ function Header() {
       setCountR(count)
   }
 
+  async function fetchClosedCase() {
+      const { count } = await supabase
+      .from('case_management')
+      .select('*', { count: 'exact' })
+      .eq('Status', 'Closed Case')
+      setCountCC(count)
+  }
+
   async function RQS() {
     var Quick_Stats = document.querySelector(".Quick-Stats");
-    if (window.location.pathname === "/HelpCenter") { 
+    if (window.location.pathname === "/Authorities/HelpCenter") { 
         if (Quick_Stats) {
           Quick_Stats.style.display = "none"; 
         }
@@ -72,8 +82,7 @@ function Header() {
             <ul className="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="https://www.cybercrime.gov.in/">Official Crime Portal</a></li>
-                {/* <li><a href="#">Case Status</a></li> */}
-                <li><a href="/HelpCenter">Help Center</a></li>
+                <li><a href="/Authorities/HelpCenter">Help Center</a></li>
             </ul>
         </nav>
         <a href="#" className="cta-btn">Report Now</a>
@@ -82,7 +91,8 @@ function Header() {
         <Link id="view-ReportStatus" to='/Authorities'> [Total Report]</Link>
         <Link id="view-ReportStatus" to='/Authorities/OpenCases'> [Open Cases]</Link>
         <Link id="view-ReportStatus" to='/Authorities/OngoingCases'> [Under Investigation]</Link>
-        <Link id="view-ReportStatus" to='/Authorities/ClosedCases'> [Resolved]</Link>
+        <Link id="view-ReportStatus" to='/Authorities/ResolvedCases'> [Resolved]</Link>
+        <Link id="view-ReportStatus" to='/Authorities/ClosedCases'> [Closed Case]</Link>
       </div>
       <div className="Quick-Stats">
         Quick Stats:  
@@ -90,6 +100,7 @@ function Header() {
         <p>- Open Cases: <span>{countOC}</span></p>                                    
         <p>- Under Investigation: <span>{countUI}</span></p>                               
         <p>- Resolved: <span>{countR}</span></p>      
+        <p>- Closed Cases: <span>{countCC}</span></p>      
       </div>
     </>
   )
