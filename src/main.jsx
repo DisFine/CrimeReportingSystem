@@ -15,6 +15,8 @@ import ResolvedCases from './AuthorityComponent/CasesTable/ResolvedCases'
 import OngoingCases from './AuthorityComponent/CasesTable/OngoingCases'
 import ClosedCases from './AuthorityComponent/CasesTable/ClosedCases'
 import HelpCenter from './AuthorityComponent/HelpCenter'
+import Evidence from './AuthorityComponent/CasesTable/Evidence'
+import Details from './AuthorityComponent/CasesTable/Details'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "HelpCenter",
         element: <HelpCenter />,
+      },
+      {
+        path: "Evidence/:caseNumber",
+        element: <Evidence />,
+      },
+      {
+        path: "Details/:caseNumber",
+        element: <Details />,
       }
     ]
   }

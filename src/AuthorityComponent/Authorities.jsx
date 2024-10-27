@@ -9,6 +9,8 @@ function Authorities() {
     const [officers, setOfficers] = useState([]);
     const [ShowUpdateStatus, setShowUpdateStatus] = useState(false)
     const [ShowOfficersAvailable, setShowOfficersAvailable] = useState(false)
+    const [ViewDetails, setViewDetails] = useState(false)
+    const [ViewEvidence, setViewEvidence] = useState(false)
     useEffect(() => {
         fetchUsers()
         FetchOfficers()
@@ -92,69 +94,85 @@ function Authorities() {
                     <th>Status</th>
                     {ShowUpdateStatus && (<th>Update Status</th>)}
                     {ShowOfficersAvailable && (<th>Officer</th>)}
+                    {ViewDetails && (<th>View Details</th>)}
+                    {ViewEvidence && (<th>View Evidence</th>)}
                 </tr>
             </thead>
             <tbody>
-                {users.map((item, index) => (
-                    <tr key={index}>
-                        <td>{item.Case_Number}</td>
-                        <td>{item.Crime_Type}</td>
-                        <td>{item.Incident_Location}</td>
-                        <td>{item.Report_Date}</td>
-                        <td>{item.Status}</td>
-                        {ShowUpdateStatus && (
-                            <td>
-                                <select 
-                                    id={`status-${item.Case_Number}`}
-                                    className="status-select"
-                                    onChange={(e) => updateStatus(item.Case_Number, e.target.value)}
-                                    value={item.Status}
-                                >
-                                    <option value="">Select Status</option>
-                                    <option value="Open Case">Open Case</option>
-                                    <option value="Under Investigation">Under Investigation</option>
-                                    <option value="Resolved">Resolved</option>
-                                    <option value="Closed Case">Closed Case</option>
-                                </select>
-                            </td>
-                        )}
-                        {ShowOfficersAvailable && (
-                            <td>
-                                {item.Status === "Closed Case" || item.Status === "Resolved" ? (
-                                    officers.find(officer => officer.ID === item.Assigned_Officer_ID)?.Officer_Name || 'Not Assigned'
-                                ) : (
+                {users
+                    .slice() // Create a shallow copy of the users array
+                    .sort((a, b) => a.Case_Number - b.Case_Number) // Sort by Case_Number in ascending order
+                    .map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.Case_Number}</td>
+                            <td>{item.Crime_Type}</td>
+                            <td>{item.Incident_Location}</td>
+                            <td>{item.Report_Date}</td>
+                            <td>{item.Status}</td>
+                            {ShowUpdateStatus && (
+                                <td>
                                     <select 
                                         id={`status-${item.Case_Number}`}
-                                        className="Officer-select"
-                                        onChange={(e) => AssignOfficers(item.Case_Number, e.target.value)}
-                                        value={item.Assigned_Officer_ID}
+                                        className="status-select"
+                                        onChange={(e) => updateStatus(item.Case_Number, e.target.value)}
+                                        value={item.Status}
                                     >
-                                        {item.Assigned_Officer_ID ? (
-                                            <option value={item.Assigned_Officer_ID}>
-                                                {officers.find(officer => officer.ID === item.Assigned_Officer_ID)?.Officer_Name}
-                                            </option>
-                                        ) : (
-                                            <option value="">Select Officer</option>
-                                        )}
-                                        {officers.filter(officer => officer.Status === 'Available').map((officer) => (
-                                            <option key={officer.ID} value={officer.ID}>
-                                                {officer.Officer_Name}
-                                            </option>
-                                        ))}
+                                        <option value="">Select Status</option>
+                                        <option value="Open Case">Open Case</option>
+                                        <option value="Under Investigation">Under Investigation</option>
+                                        <option value="Resolved">Resolved</option>
+                                        <option value="Closed Case">Closed Case</option>
                                     </select>
-                                )}
-                            </td> 
-                        )}
-                    </tr>
-                ))}
+                                </td>
+                            )}
+                            {ShowOfficersAvailable && (
+                                <td>
+                                    {item.Status === "Closed Case" || item.Status === "Resolved" ? (
+                                        officers.find(officer => officer.ID === item.Assigned_Officer_ID)?.Officer_Name || 'Not Assigned'
+                                    ) : (
+                                        <select 
+                                            id={`status-${item.Case_Number}`}
+                                            className="Officer-select"
+                                            onChange={(e) => AssignOfficers(item.Case_Number, e.target.value)}
+                                            value={item.Assigned_Officer_ID}
+                                        >
+                                            {item.Assigned_Officer_ID ? (
+                                                <option value={item.Assigned_Officer_ID}>
+                                                    {officers.find(officer => officer.ID === item.Assigned_Officer_ID)?.Officer_Name}
+                                                </option>
+                                            ) : (
+                                                <option value="">Select Officer</option>
+                                            )}
+                                            {officers.filter(officer => officer.Status === 'Available').map((officer) => (
+                                                <option key={officer.ID} value={officer.ID}>
+                                                    {officer.Officer_Name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    )}
+                                </td> 
+                            )}
+                            {ViewDetails && (
+                                <td>
+                                    <Link to={`/Authorities/Details/${item.Case_Number}`}> [View Details] </Link>
+                                </td>
+                            )}
+                            {ViewEvidence && (
+                                <td>
+                                    <Link to={`/Authorities/Evidence/${item.Case_Number}`}> [View Evidence] </Link>
+                                </td>
+                            )}
+                        </tr>
+                    )
+                )}
             </tbody>
         </table>
       </div>
       <div className="ViewDetails">
-        <Link id="view-Details" to='/signup'> [View Details] </Link>
-        <button id="view-Details" onClick={() => setShowOfficersAvailable(!ShowOfficersAvailable)}> [Assign Officer] </button>
-        <button id="view-Details" onClick={() => setShowUpdateStatus(!ShowUpdateStatus)}> [update Status] </button>
-        <Link id="view-Details" to='/signup'> [Evidence] </Link>
+        <button className="view-Details" onClick={() => setViewDetails(!ViewDetails)}> [View Details] </button>
+        <button className="view-Details" onClick={() => setShowOfficersAvailable(!ShowOfficersAvailable)}> [Assign Officer] </button>
+        <button className="view-Details" onClick={() => setShowUpdateStatus(!ShowUpdateStatus)}> [update Status] </button>
+        <button className="view-Details" onClick={() => setViewEvidence(!ViewEvidence)}> [Evidence] </button>
       </div>
         <footer>
           <div className="footer-container">

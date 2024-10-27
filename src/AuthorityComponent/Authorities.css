@@ -69,7 +69,7 @@
     border: 1px solid black;
     border-radius: 14px;
     width: 80%;
-    margin-left: 8%;
+    margin-left: 9%;
     margin-bottom: 10px;
 }
 
@@ -153,7 +153,7 @@ h1 {
     justify-content: space-evenly;
 }
 
-.ViewDetails #view-Details {
+.ViewDetails .view-Details {
     font-size: 30px;
     color: white;
     background-color: transparent;
@@ -312,4 +312,37 @@ footer {
 .Officer-select:focus {
     border-color: #4169E1;
     box-shadow: 0px 0px 5px rgba(65, 105, 225, 0.5);
+}
+
+.Case_Details {
+    display: flex;
+    row-gap: 20px;
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #413b3b;
+    opacity: 0.9;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 14px;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 9%;
+    margin-bottom: 20px;
+    padding: 40px;
+}
+
+.Case_Details strong{
+    color: grey;
+    text-decoration: underline;
+}
+
+.Case_Details .Description{
+    display: flex;
+    flex-direction: column;
 }

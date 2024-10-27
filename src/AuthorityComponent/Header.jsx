@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 function Header() {
   const location = useLocation();
+  const [users, setUsers] = useState([]);
   const [countTR, setCountTR] = useState(0);
   const [countOC, setCountOC] = useState(0);
   const [countUI, setCountUI] = useState(0);
@@ -22,10 +23,11 @@ function Header() {
   }, [location]);
 
   async function fetchTotalReports() {
-      const { count } = await supabase
+      const { data, count } = await supabase
       .from('case_management')
       .select('*', { count: 'exact' })
       setCountTR(count)
+      setUsers(data)
   }
 
   async function fetchOpenCases() {
@@ -61,15 +63,16 @@ function Header() {
   }
 
   async function RQS() {
-    var Quick_Stats = document.querySelector(".Quick-Stats");
-    if (window.location.pathname === "/Authorities/HelpCenter") { 
-        if (Quick_Stats) {
-          Quick_Stats.style.display = "none"; 
-        }
+    const Quick_Stats = document.querySelector(".Quick-Stats");
+    const currentPath = window.location.pathname;
+
+    const shouldHideQuickStats = ["/Authorities/HelpCenter"].includes(currentPath)
+      || users.some(item => currentPath === `/Authorities/Details/${item.Case_Number}`) 
+      || users.some(item => currentPath === `/Authorities/Evidence/${item.Case_Number}`);
+
+    if (Quick_Stats) {
+        Quick_Stats.style.display = shouldHideQuickStats ? "none" : "block";
     }
-    else {
-      Quick_Stats.style.display = "block"; 
-    }  
   }
 
   return (
