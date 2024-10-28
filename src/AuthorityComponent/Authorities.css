@@ -116,25 +116,6 @@ h1 {
     text-align: center;
     border-radius: 5px;
 }
-/* 
-.view-btn {
-    width: 100%;
-    padding: 10px;
-    margin: auto;
-    background-color: rgb(0 25 78);
-    border: 2px solid #000000;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    cursor: pointer;
-    font-family: "VT323", monospace;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.view-btn:hover {
-    background-color: #441010;
-} */
 
 .ViewDetails {
     display: flex;
@@ -143,7 +124,7 @@ h1 {
     padding: 10px;
     color: white;
     flex-direction: row;
-    margin-left: 8%;
+    margin-left: 9%;
     margin-top: 0.2%;
     margin-bottom: 3%;
     background-color: #605858;

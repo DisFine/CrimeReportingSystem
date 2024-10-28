@@ -66,14 +66,6 @@ function Authorities() {
         .update({ Status: 'Not Available' })
         .eq('ID', newOfficerId); 
 
-        setUsers(prevUsers => 
-            prevUsers.map(item => 
-                item.Case_Number === caseNumber 
-                ? { ...item, Assigned_Officer_ID: newOfficerId }
-                : item
-            )
-        );
-
         await fetchUsers();
         await FetchOfficers();
     };  
@@ -170,6 +162,7 @@ function Authorities() {
       </div>
       <div className="ViewDetails">
         <button className="view-Details" onClick={() => setViewDetails(!ViewDetails)}> [View Details] </button>
+        <Link className="view-Details" to='/Authorities/OfficerDetails'> [Officer Details] </Link>
         <button className="view-Details" onClick={() => setShowOfficersAvailable(!ShowOfficersAvailable)}> [Assign Officer] </button>
         <button className="view-Details" onClick={() => setShowUpdateStatus(!ShowUpdateStatus)}> [update Status] </button>
         <button className="view-Details" onClick={() => setViewEvidence(!ViewEvidence)}> [Evidence] </button>
