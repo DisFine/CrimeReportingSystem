@@ -83,9 +83,9 @@ function Header() {
         </div>
         <nav>
             <ul className="nav-links">
-                <li><a href="#">Home</a></li>
+            <li><Link to="/Authorities">Home</Link></li>
                 <li><a href="https://www.cybercrime.gov.in/">Official Crime Portal</a></li>
-                <li><a href="/Authorities/HelpCenter">Help Center</a></li>
+                <li><Link to="/Authorities/HelpCenter">Help Center</Link></li>
             </ul>
         </nav>
         <a href="#" className="cta-btn">Report Now</a>
