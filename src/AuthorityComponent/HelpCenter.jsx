@@ -46,7 +46,7 @@ function HelpCenter() {
 
                     <p><strong>What types of cyber crimes can I report?</strong></p>
                     <ul>
-                        <li>Cyberbullying</li>
+                        <li>CyberBullying</li>
                         <li>Identity theft</li>
                         <li>Online fraud</li>
                         <li>Hacking</li>
