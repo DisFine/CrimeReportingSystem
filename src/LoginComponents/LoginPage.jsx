@@ -1,17 +1,49 @@
-import React, { useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import './LoginPage.css';
 import { Link } from 'react-router-dom';
-const LoginPage = () => {
+import { supabase } from '../createClient';
+function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if ( username == 'dwain' && password == '01234'){
-            window.location.href = '/Authorities';
+    const handleUsernameChange = (e) => setUsername(e.target.value);
+    const handlePasswordChange = (e) => setPassword(e.target.value);
+
+
+    async function CheckCredentials() {
+        try {
+            const { data, error } = await supabase
+                .from('LoginCredentials')
+                .select('*')
+                .eq('name', username)
+
+            if (error) {
+                alert('Error fetching user data: ' + error.message);
+                return;
+            }
+
+            if (data.length === 0) {
+                alert('Username not found');
+                return;
+            }
+
+            const user = data[0];
+
+            if (user.password === password) {
+                window.location.href = '/Authorities';
+            }
+        } 
+        catch (error) {
+            console.error('Error checking credentials:', error);
+            alert('An unexpected error occurred');
         }
         setPassword('');
         setUsername('');
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+        CheckCredentials();
     };
 
     return (
@@ -32,7 +64,7 @@ const LoginPage = () => {
                                 type="text"
                                 id="username"
                                 value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                onChange={handleUsernameChange}
                                 required
                             />
                         </div>
@@ -42,11 +74,11 @@ const LoginPage = () => {
                                 type="password"
                                 id="password"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={handlePasswordChange}
                                 required
                             />
                         </div>
-                        <button type="submit" className='Lbtn'>Login</button>
+                        <button type="submit" className='LBtn'>Login</button>
                     </form>
                     <div className="anchor-group">
                         <Link id="signup-button" to='/signup'>Sign Up</Link>
